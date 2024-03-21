@@ -120,6 +120,7 @@ class _SelectColorButtons extends StatelessWidget {
               onPressed: () => onSelected(Colors.blue),
               child: const Text('Blue'),
             ),
+            const SizedBox(width: 8),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
@@ -128,6 +129,7 @@ class _SelectColorButtons extends StatelessWidget {
               onPressed: () => onSelected(Colors.green),
               child: const Text('Green'),
             ),
+            const SizedBox(width: 8),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
