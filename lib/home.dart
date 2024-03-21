@@ -15,11 +15,21 @@ class Home extends HookWidget {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text('Parent color'),
+              const SizedBox(height: 8),
               Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
+                  SizedBox.square(
+                    dimension: kMinInteractiveDimension,
+                    child: ColoredBox(
+                      color: parentColor.value,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
                   _SelectColorButtons(
-                    label: 'Parent color',
                     onSelected: (newColor) {
                       debugPrint(
                         'Parent color selected: '
@@ -27,13 +37,6 @@ class Home extends HookWidget {
                       );
                       parentColor.value = newColor;
                     },
-                  ),
-                  const Spacer(),
-                  SizedBox.square(
-                    dimension: kMinInteractiveDimension,
-                    child: ColoredBox(
-                      color: parentColor.value,
-                    ),
                   ),
                 ],
               ),
@@ -62,25 +65,32 @@ class _ChildWidget extends HookWidget {
     final color = useEffectiveState(initialColor);
     // final color = useState(initialColor);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _SelectColorButtons(
-          label: 'Child color',
-          onSelected: (newColor) {
-            debugPrint(
-              'Child color selected: '
-              '${color.value.value} → ${newColor.value}',
-            );
-            color.value = newColor;
-          },
-        ),
-        const Spacer(),
-        SizedBox.square(
-          dimension: kMinInteractiveDimension,
-          child: ColoredBox(
-            color: color.value,
-          ),
+        const Text('Child color'),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox.square(
+              dimension: kMinInteractiveDimension,
+              child: ColoredBox(
+                color: color.value,
+              ),
+            ),
+            const SizedBox(width: 16),
+            _SelectColorButtons(
+              onSelected: (newColor) {
+                debugPrint(
+                  'Child color selected: '
+                  '${color.value.value} → ${newColor.value}',
+                );
+                color.value = newColor;
+              },
+            ),
+          ],
         ),
       ],
     );
@@ -89,11 +99,9 @@ class _ChildWidget extends HookWidget {
 
 class _SelectColorButtons extends StatelessWidget {
   const _SelectColorButtons({
-    required this.label,
     required this.onSelected,
   });
 
-  final String label;
   final void Function(Color color) onSelected;
 
   @override
@@ -101,25 +109,32 @@ class _SelectColorButtons extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label),
-        const SizedBox(height: 8),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+              ),
               onPressed: () => onSelected(Colors.blue),
               child: const Text('Blue'),
             ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+              ),
               onPressed: () => onSelected(Colors.green),
               child: const Text('Green'),
             ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
-              onPressed: () => onSelected(Colors.yellow),
-              child: const Text('Yellow'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+              ),
+              onPressed: () => onSelected(Colors.red),
+              child: const Text('Red'),
             ),
           ],
         ),
