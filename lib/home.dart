@@ -60,6 +60,7 @@ class _ChildWidget extends HookWidget {
   Widget build(BuildContext context) {
     debugPrint('Child build()');
     final color = useEffectiveState(initialColor);
+    // final color = useState(initialColor);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
