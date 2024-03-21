@@ -6,8 +6,8 @@ class Home extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('Parent build()');
     final parentColor = useState<Color>(Colors.blue);
-    print('Home#build: parentColor=${parentColor.value.value}');
 
     return Scaffold(
       body: Padding(
@@ -21,9 +21,11 @@ class Home extends HookWidget {
                   _SelectColorsButtons(
                     label: 'Parent color',
                     onSelected: (newColor) {
+                      debugPrint(
+                        'Parent color selected: '
+                        '${parentColor.value.value} → ${newColor.value}',
+                      );
                       parentColor.value = newColor;
-                      print(
-                          'Home#_SelectColorsButtons#onSelected: parentColor=${parentColor.value}');
                     },
                   ),
                   const Spacer(),
@@ -56,6 +58,7 @@ class _ChildWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('Child build()');
     final color = useEffectiveState(initialColor);
 
     return Row(
@@ -64,6 +67,10 @@ class _ChildWidget extends HookWidget {
         _SelectColorsButtons(
           label: 'Child color',
           onSelected: (newColor) {
+            debugPrint(
+              'Child color selected: '
+              '${color.value.value} → ${newColor.value}',
+            );
             color.value = newColor;
           },
         ),
