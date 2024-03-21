@@ -18,7 +18,7 @@ class Home extends HookWidget {
             children: [
               Row(
                 children: [
-                  _SelectColorsButtons(
+                  _SelectColorButtons(
                     label: 'Parent color',
                     onSelected: (newColor) {
                       debugPrint(
@@ -65,7 +65,7 @@ class _ChildWidget extends HookWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _SelectColorsButtons(
+        _SelectColorButtons(
           label: 'Child color',
           onSelected: (newColor) {
             debugPrint(
@@ -87,8 +87,8 @@ class _ChildWidget extends HookWidget {
   }
 }
 
-class _SelectColorsButtons extends StatelessWidget {
-  const _SelectColorsButtons({
+class _SelectColorButtons extends StatelessWidget {
+  const _SelectColorButtons({
     required this.label,
     required this.onSelected,
   });
