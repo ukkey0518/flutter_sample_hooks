@@ -1,0 +1,18 @@
+name: flutter_sample_hooks
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment: { sdk: ^3.3.1 }
+
+dependencies:
+  flutter: { sdk: flutter }
+  flutter_hooks: ^0.20.5
+
+dev_dependencies:
+  flutter_test: { sdk: flutter }
+  very_good_analysis: ^5.1.0
+
+flutter:
+  uses-material-design: true
